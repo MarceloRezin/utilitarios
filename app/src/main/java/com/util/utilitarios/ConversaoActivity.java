@@ -30,10 +30,15 @@ public class ConversaoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversao);
 
         textViewDescDolar = findViewById(R.id.text_desc_dolar);
+        textViewDescDolar.setText("1" + DESC_DOLAR);
+
         textViewResultReal = findViewById(R.id.text_result_real);
+        textViewResultReal.setText("3.96" + DESC_REAL);
 
         editTextDolar = findViewById(R.id.edit_dolar);
+        editTextDolar.setText("1");
         editTextReal = findViewById(R.id.edit_real);
+        editTextReal.setText("3.96");
 
         editTextDolar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -50,7 +55,7 @@ public class ConversaoActivity extends AppCompatActivity {
                     if(txtReal.length() > 0){
                         BigDecimal real = new BigDecimal(txtReal);
 
-                        textViewResultReal.setText(real.multiply(dolar).toString() + DESC_REAL);
+                        textViewResultReal.setText(real.multiply(dolar).setScale(2, RoundingMode.HALF_DOWN).toString() + DESC_REAL);
                     }
                 }
             }
@@ -71,7 +76,7 @@ public class ConversaoActivity extends AppCompatActivity {
                     if(txtDolar.length() > 0){
                         BigDecimal dolar = new BigDecimal(txtDolar);
                         BigDecimal real = new BigDecimal(charSequence.toString());
-                        textViewResultReal.setText(real.multiply(dolar).toString() + DESC_REAL);
+                        textViewResultReal.setText(real.multiply(dolar).setScale(2, RoundingMode.HALF_DOWN).toString() + DESC_REAL);
                     }
                 }
             }
