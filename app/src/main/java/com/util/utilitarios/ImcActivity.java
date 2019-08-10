@@ -3,6 +3,7 @@ package com.util.utilitarios;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,25 +37,48 @@ public class ImcActivity extends AppCompatActivity {
         calcular = findViewById(R.id.btn_calcular);
         calcular.setOnClickListener(o -> {
 
-            BigDecimal altura = new BigDecimal(editTextAltura.getText().toString());
-            BigDecimal alturaCm = altura.multiply(new BigDecimal("100"));
-            BigDecimal peso = new BigDecimal(editTextPeso.getText().toString());
+            try {
 
-            BigDecimal pesoIdeal = alturaCm.subtract(new BigDecimal("100")).subtract(alturaCm.subtract(peso).divide(new BigDecimal("4")).multiply(new BigDecimal("0.05")));
-            pesoIdeal = pesoIdeal.setScale(2, RoundingMode.HALF_DOWN);
-            editTextPesoIdeal.setText(pesoIdeal.toString() + " Kg");
+                String pesoString = editTextPeso.getText().toString();
+                if(pesoString.isEmpty()){
+                    throw new Exception("Informe o peso!");
+                }
 
-            BigDecimal imc = peso.divide(altura.pow(2), 2, RoundingMode.HALF_DOWN);
-            editTextImc.setText(imc.toString());
+                String alturaString = editTextAltura.getText().toString();
+                if(alturaString.isEmpty()){
+                    throw new Exception("Informe a altura!");
+                }
 
-            if(imc.compareTo(new BigDecimal("20")) < 0){
-                editTextInterpretacao.setText("Baixo Peso");
-            }else if(imc.compareTo(new BigDecimal("25")) < 0){
-                editTextInterpretacao.setText("Normal");
-            }else if(imc.compareTo(new BigDecimal("30")) <= 0){
-                editTextInterpretacao.setText("Acima do Peso");
-            }else{
-                editTextInterpretacao.setText("Obeso");
+                BigDecimal altura = new BigDecimal(alturaString);
+                if(altura.compareTo(new BigDecimal("1.1")) < 0 || altura.compareTo(new BigDecimal("2.5")) > 0){
+                    throw new Exception("A altura informada é inválida!");
+                }
+                BigDecimal alturaCm = altura.multiply(new BigDecimal("100"));
+
+                BigDecimal peso = new BigDecimal(pesoString);
+                if(peso.compareTo(new BigDecimal("10")) < 0 || peso.compareTo(new BigDecimal("200")) > 0){
+                    throw new Exception("O peso informado é inválido!");
+                }
+
+                BigDecimal pesoIdeal = alturaCm.subtract(new BigDecimal("100")).subtract(alturaCm.subtract(peso).divide(new BigDecimal("4")).multiply(new BigDecimal("0.05")));
+                pesoIdeal = pesoIdeal.setScale(2, RoundingMode.HALF_DOWN);
+                editTextPesoIdeal.setText(pesoIdeal.toString() + " Kg");
+
+                BigDecimal imc = peso.divide(altura.pow(2), 2, RoundingMode.HALF_DOWN);
+                editTextImc.setText(imc.toString());
+
+                if(imc.compareTo(new BigDecimal("20")) < 0){
+                    editTextInterpretacao.setText("Baixo Peso");
+                }else if(imc.compareTo(new BigDecimal("25")) < 0){
+                    editTextInterpretacao.setText("Normal");
+                }else if(imc.compareTo(new BigDecimal("30")) <= 0){
+                    editTextInterpretacao.setText("Acima do Peso");
+                }else{
+                    editTextInterpretacao.setText("Obeso");
+                }
+
+            }catch (Exception e){
+                Toast.makeText(ImcActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
