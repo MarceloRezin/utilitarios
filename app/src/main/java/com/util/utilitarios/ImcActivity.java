@@ -28,6 +28,9 @@ public class ImcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imc);
 
+
+        this.getSupportActionBar().setSubtitle("Uma medida de gordura corporal em adultos");
+
         editTextPeso = findViewById(R.id.edit_peso);
         editTextAltura = findViewById(R.id.edit_altura);
         editTextPesoIdeal = findViewById(R.id.edit_peso_ideal);
