@@ -9,7 +9,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnImc;
-    private Button btnConversao;
+    private Button btnConversaoDolarReal;
     private Button btnConversaoPendrive;
 
     @Override
@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it);
         });
 
-        btnConversao = findViewById(R.id.btn_conversao);
-        btnConversao.setOnClickListener(o -> {
-            Intent it = new Intent(MainActivity.this, ConversaoActivity.class);
+        btnConversaoDolarReal = findViewById(R.id.btn_conversao_dolar_real);
+        btnConversaoDolarReal.setOnClickListener(o -> {
+            Intent it = new Intent(MainActivity.this, ConversaoDolarRealActivity.class);
             startActivity(it);
         });
 

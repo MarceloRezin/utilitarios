@@ -3,7 +3,6 @@ package com.util.utilitarios;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class ConversaoActivity extends AppCompatActivity {
+public class ConversaoDolarRealActivity extends AppCompatActivity {
 
     private static final String DESC_DOLAR = " Dólar americano igual a";
     private static final String DESC_REAL = " Real Brasileiro";
@@ -27,7 +26,7 @@ public class ConversaoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_conversao);
+        setContentView(R.layout.activity_conversao_dolar_real);
 
         textViewDescDolar = findViewById(R.id.text_desc_dolar);
         textViewDescDolar.setText("1" + DESC_DOLAR);
