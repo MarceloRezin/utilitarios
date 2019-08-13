@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".ImcActivity" android:label="Índice de massa corporal (IMC)"></activity>
         <activity android:name=".ConversaoActivity" android:label="Conversor de dólares para reais"></activity>
+        <activity android:name=".ConversaoPendriveDisqueteActivity" android:label="Conversor Pen-Drive em Disquete"></activity>
     </application>
 
 </manifest>
