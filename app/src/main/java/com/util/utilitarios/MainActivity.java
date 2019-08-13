@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnImc;
     private Button btnConversao;
+    private Button btnConversaoPendrive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         btnConversao = findViewById(R.id.btn_conversao);
         btnConversao.setOnClickListener(o -> {
             Intent it = new Intent(MainActivity.this, ConversaoActivity.class);
+            startActivity(it);
+        });
+
+        btnConversaoPendrive = findViewById(R.id.btn_conversao_pendrive);
+        btnConversaoPendrive.setOnClickListener(o -> {
+            Intent it = new Intent(MainActivity.this, ConversaoPendriveDisqueteActivity.class);
             startActivity(it);
         });
     }
